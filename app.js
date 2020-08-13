@@ -16,7 +16,46 @@ app.get("/", (req, res) => {
 
 app.post("/api/update", (req, res) => {
 
-	console.log(req.body);
+	// console.log(req.body);
+
+	let githubData = req.body;
+
+	let project = githubData.repository;
+	let commits = githubData.commits;
+
+	console.log(project);
+	console.log(commits);
+
+	let message = "";
+
+	message += "Событие: проект обновлен \n";
+	message += ("Проект: " + project.name + "\n");
+	message += "Коммиты: \n";
+
+	let i = 0;
+	for (commit of commits)
+	{
+		let commitMessage = "";
+	
+		commitMessage += (i + ": \n");
+		commitMessage += ("Автор: " + commit.author.name + "\n");
+		commitMessage += "Изменения: \n";
+
+		commitMessage += "-> Добавлены: \n";
+		commitMessage += (commit.added.join(", ") + "\n");
+
+		commitMessage += "-> Удалены: \n";
+		commitMessage += (commit.removed.join(", ") + "\n");
+
+		commitMessage += "-> Изменены: \n";
+		commitMessage += (commit.modified.join(", ") + "\n");
+
+		console.log(commitMessage);
+
+		message += commitMessage;
+	}
+
+	console.log(message);
 
 	res.end();
 
