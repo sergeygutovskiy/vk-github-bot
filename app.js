@@ -28,31 +28,40 @@ app.post("/api/update", (req, res) => {
 
 	let message = "";
 
-	message += "Событие: проект обновлен \n";
-	message += ("Проект: " + project.name + "\n");
-	message += "Коммиты: \n";
+	message += "-> Событие: проект обновлен \n";
+	message += ("-- Проект: " + project.name + "\n");
+	message += "-- Коммиты: \n";
 
 	let i = 0;
 	for (commit of commits)
 	{
 		let commitMessage = "";
 	
-		commitMessage += (i + ": \n");
-		commitMessage += ("Автор: " + commit.author.name + "\n");
-		commitMessage += "Изменения: \n";
+		commitMessage += ("-> " + i + ": \n");
+		commitMessage += ("-- Автор: " + commit.author.name + "\n");
+		commitMessage += "-- Изменения: \n";
 
 		commitMessage += "-> Добавлены: \n";
-		commitMessage += (commit.added.join(", ") + "\n");
+		if (commit.added.length > 0)
+			commitMessage += ("-- " + commit.added.join(", ") + "\n");
+		else
+			commitMessage += "-- Нет, не добавлены";
 
 		commitMessage += "-> Удалены: \n";
-		commitMessage += (commit.removed.join(", ") + "\n");
+		if (commit.removed.length > 0)
+			commitMessage += ("-- " + commit.removed.join(", ") + "\n");
+		else
+			commitMessage += "-- Нет, не удалены";
 
 		commitMessage += "-> Изменены: \n";
-		commitMessage += (commit.modified.join(", ") + "\n");
+		if (commit.modified.length > 0)
+			commitMessage += ("-- " + commit.modified.join(", ") + "\n");
+		else 
+			commitMessage += "-- Нет, не изменены";
 
-		console.log(commitMessage);
 
 		message += commitMessage;
+		message += "\n";
 	}
 
 	console.log(message);
