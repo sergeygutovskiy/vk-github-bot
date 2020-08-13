@@ -23,14 +23,14 @@ app.post("/api/update", (req, res) => {
 	let project = githubData.repository;
 	let commits = githubData.commits;
 
-	console.log(project);
-	console.log(commits);
+	// console.log(project);
+	// console.log(commits);
 
 	let message = "";
 
 	message += "-> Событие: проект обновлен \n";
 	message += ("-- Проект: " + project.name + "\n");
-	message += "-- Коммиты: \n";
+	message += "-> Коммиты: \n";
 
 	let i = 0;
 	for (commit of commits)
@@ -45,19 +45,19 @@ app.post("/api/update", (req, res) => {
 		if (commit.added.length > 0)
 			commitMessage += ("-- " + commit.added.join(", ") + "\n");
 		else
-			commitMessage += "-- Нет, не добавлены";
+			commitMessage += "-- Нет, не добавлены \n";
 
 		commitMessage += "-> Удалены: \n";
 		if (commit.removed.length > 0)
 			commitMessage += ("-- " + commit.removed.join(", ") + "\n");
 		else
-			commitMessage += "-- Нет, не удалены";
+			commitMessage += "-- Нет, не удалены \n";
 
 		commitMessage += "-> Изменены: \n";
 		if (commit.modified.length > 0)
 			commitMessage += ("-- " + commit.modified.join(", ") + "\n");
 		else 
-			commitMessage += "-- Нет, не изменены";
+			commitMessage += "-- Нет, не изменены \n";
 
 
 		message += commitMessage;
@@ -65,6 +65,39 @@ app.post("/api/update", (req, res) => {
 	}
 
 	console.log(message);
+
+	(async () => {
+
+		// let url = "https://api.vk.com/method/"
+		// 	+                    "groups.getLongPollServer"
+		// 	+ "?"              + "group_id=197891018" 
+		// 	+ "&access_token=" + "61aa356086d2f7a3729eb29cda2617e99a30066dbaf946751989e00fb806a0a1d680e7810372e10f63df3"
+		// 	+ "&v="            + "5.122";
+
+		// let response = await fetch(url);
+		// let body = await response.json();
+
+		// let server = body.response.server;
+		// let key    = body.response.key;
+		// let ts     = body.response.ts;
+
+		// console.log(server + " " + key + " " + ts + '\n');
+
+		let url = "https://api.vk.com/method/"
+			+ "messages.send"
+			+ "?random_id=" + Math.floor((1000000) * Math.random())
+			// + "&conversation_message_id=" + messageID
+			+ "&message="   + message
+			+ "&peer_id="   + (2000000000 + 1)
+			+ "&access_token=" + "61aa356086d2f7a3729eb29cda2617e99a30066dbaf946751989e00fb806a0a1d680e7810372e10f63df3"
+			+ "&v="            + "5.122";
+	
+		let response = await fetch(url);
+		let body = await response.text();
+
+		console.log(body)
+
+	})();
 
 	res.end();
 
