@@ -39,7 +39,7 @@ app.post("/api/update", (req, res) => {
 	
 		commitMessage += ("-> " + i + ": \n");
 		commitMessage += ("-- Автор: " + commit.author.name + "\n");
-		commitMessage += "-- Изменения: \n";
+		// commitMessage += "-- Изменения: \n";
 
 		commitMessage += "-> Добавлены: \n";
 		if (commit.added.length > 0)
@@ -87,7 +87,7 @@ app.post("/api/update", (req, res) => {
 			+ "messages.send"
 			+ "?random_id=" + Math.floor((1000000) * Math.random())
 			// + "&conversation_message_id=" + messageID
-			+ "&message="   + message
+			+ "&message="   + "половой орган"
 			+ "&peer_id="   + (2000000000 + 1)
 			+ "&access_token=" + "61aa356086d2f7a3729eb29cda2617e99a30066dbaf946751989e00fb806a0a1d680e7810372e10f63df3"
 			+ "&v="            + "5.122";
