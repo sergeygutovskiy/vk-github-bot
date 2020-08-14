@@ -79,8 +79,6 @@ function generateMessageFromGitHubInfo(info)
 
 
 		message += commitMessage;
-		// if (commit != commits[commits.length])
-		// 	message += "\n";
 	}
 
 	message += ("+-----------------");
@@ -105,22 +103,22 @@ app.post("/api/update", (req, res) => {
 
 	let message = generateMessageFromGitHubInfo(req.body);
 
-	console.log(message);
+	// console.log(message);
 
-	// (async () => {
+	(async () => {
 
 
-	// 	let response = await vk.call("messages.send", {
-	// 		"random_id": Math.floor((1000000) * Math.random()),
-	// 		"message"  : "just a test, nothing else...",
-	// 		"peer_id"  : 2000000000 + 1
-	// 	})
+		let response = await vk.call("messages.send", {
+			"random_id": Math.floor((1000000) * Math.random()),
+			"message"  : encodeURI(message),
+			"peer_id"  : 2000000000 + 1
+		})
 
-	// 	console.log(response);
+		console.log(response);
 
-	// })();
+		res.end();
 
-	// res.end();
+	})();
 
 });
 
