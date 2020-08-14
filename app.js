@@ -65,6 +65,7 @@ function generateMessageFromGitHubInfo(info)
 			commitMessage += (commit.added.join(", ") + "\n");
 		}
 
+
 		if (commit.removed.length > 0)
 		{
 			commitMessage += ("| -- Удалены: ");
