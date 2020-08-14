@@ -77,6 +77,7 @@ function generateMessageFromGitHubInfo(info)
 			commitMessage += (commit.modified.join(", ") + "\n");
 		}
 
+
 		message += commitMessage;
 		// if (commit != commits[commits.length])
 		// 	message += "\n";
