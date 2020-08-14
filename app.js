@@ -71,7 +71,6 @@ function generateMessageFromGitHubInfo(info)
 			commitMessage += ("-- " + commit.removed.join(", ") + "\n");
 		}
 
-
 		if (commit.modified.length > 0)
 		{
 			commitMessage += "-> Изменены: ";
