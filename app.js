@@ -44,7 +44,7 @@ function generateMessageFromGitHubInfo(info)
 
 	let message = "";
 
-	message += ("+----------- \n");
+	message += ("+----------------- \n");
 	message += ("| Событие: проект обновлен \n");
 	message += ("| -> Проект: " + project.name + "\n");
 	message += ("+ Коммиты: \n");
@@ -68,21 +68,21 @@ function generateMessageFromGitHubInfo(info)
 		if (commit.removed.length > 0)
 		{
 			commitMessage += ("| -- Удалены: ");
-			commitMessage += ("-- " + commit.removed.join(", ") + "\n");
+			commitMessage += (commit.removed.join(", ") + "\n");
 		}
 
 		if (commit.modified.length > 0)
 		{
-			commitMessage += "-> Изменены: ";
-			commitMessage += ("-- " + commit.modified.join(", ") + "\n");
+			commitMessage += "| -- Изменены: ";
+			commitMessage += (commit.modified.join(", ") + "\n");
 		}
 
 		message += commitMessage;
-		if (commit != commits[commits.length])
-			message += "\n";
+		// if (commit != commits[commits.length])
+		// 	message += "\n";
 	}
 
-	message += ("+-----------");
+	message += ("+-----------------");
 
 	return message;
 }
