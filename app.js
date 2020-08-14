@@ -79,6 +79,7 @@ function generateMessageFromGitHubInfo(info)
 
 
 		message += commitMessage;
+		i++;
 	}
 
 	message += ("===========================")
