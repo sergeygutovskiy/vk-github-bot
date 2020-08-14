@@ -44,10 +44,10 @@ function generateMessageFromGitHubInfo(info)
 
 	let message = "";
 
-	message += ("+----------------- \n");
+	message += ("=========================== \n");
 	message += ("| Событие: проект обновлен \n");
 	message += ("| -> Проект: " + project.name + "\n");
-	message += ("+ Коммиты: \n");
+	message += ("| Коммиты: \n");
 
 	console.log(commits);
 
@@ -81,7 +81,7 @@ function generateMessageFromGitHubInfo(info)
 		message += commitMessage;
 	}
 
-	message += ("+-----------------");
+	message += ("===========================")
 
 	return message;
 }
