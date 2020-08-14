@@ -44,7 +44,7 @@ function generateMessageFromGitHubInfo(info)
 
 	let message = "";
 
-	message += ("+----------");
+	message += ("+-----------");
 	message += ("| Событие: проект обновлен \n");
 	message += ("| -> Проект: " + project.name + "\n");
 	message += ("+ Коммиты: \n");
