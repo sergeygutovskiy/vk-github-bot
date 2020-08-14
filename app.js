@@ -107,7 +107,6 @@ app.post("/api/update", (req, res) => {
 
 	(async () => {
 
-
 		let response = await vk.call("messages.send", {
 			"random_id": Math.floor((1000000) * Math.random()),
 			"message"  : encodeURI(message),
